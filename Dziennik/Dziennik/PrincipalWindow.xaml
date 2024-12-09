@@ -1,0 +1,85 @@
+﻿<Window x:Class="Dziennik.PrincipalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Principal Window" Height="600" Width="1000" Background="LightBlue">
+    <Grid Margin="10">
+        <TabControl>
+            <!-- Zakładka dla funkcji TeacherWindow -->
+            <TabItem Header="Panel Nauczyciela">
+                <Grid Margin="10">
+                    <!-- Lista uczniów przypisanych do wychowawcy -->
+                    <ListBox x:Name="StudentsListBox" 
+                             DisplayMemberPath="FullName"
+                             SelectionChanged="StudentsListBox_SelectionChanged"
+                             Margin="10" 
+                             Width="250" 
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top" />
+
+                    <!-- Szczegóły wybranego ucznia i aktualizacja punktów -->
+                    <StackPanel Orientation="Vertical" Margin="280,10,10,10">
+                        <TextBlock Text="Szczegóły ucznia:" FontWeight="Bold" Margin="0,0,0,10" />
+                        <TextBlock Text="Imię i nazwisko:" />
+                        <TextBlock x:Name="SelectedStudentName" Text="Imię i nazwisko" Margin="0,5,0,15" />
+                        <TextBlock Text="Punkty:" />
+                        <TextBlock x:Name="SelectedStudentPoints" Text="0" Margin="0,5,0,15" />
+
+                        <!-- Pole do zmiany punktów -->
+                        <TextBlock Text="Nowa liczba punktów:" />
+                        <TextBox x:Name="NewPointsTextBox" Margin="0,5,0,15" />
+                        <Button Content="Zaktualizuj punkty" 
+                                Click="UpdatePoints_Click" 
+                                Margin="0,0,0,20" />
+
+                        <!-- Dodawanie ocen -->
+                        <TextBlock Text="Dodaj ocenę:" FontWeight="Bold" Margin="0,0,0,10" />
+                        <TextBlock Text="Przedmiot:" />
+                        <ComboBox x:Name="SubjectsComboBox" 
+                                  DisplayMemberPath="Nazwa" 
+                                  SelectedValuePath="Id"
+                                  Margin="0,5,0,10" />
+                        <TextBlock Text="Ocena:" />
+                        <TextBox x:Name="NewGradeTextBox" Margin="0,5,0,15" />
+                        <Button Content="Dodaj ocenę" 
+                                Click="AddGrade_Click" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Zakładka dla funkcji zarządzania uczniami -->
+            <TabItem Header="Zarządzanie Uczniami">
+                <Grid Margin="10">
+                    <!-- Lista uczniów -->
+                    <StackPanel Orientation="Vertical" Width="300" HorizontalAlignment="Left" Margin="0,0,10,0">
+                        <TextBlock Text="Lista uczniów" FontWeight="Bold" Margin="0,0,0,10" />
+                        <ListBox x:Name="AllStudentsListBox" 
+                                 DisplayMemberPath="FullName"
+                                 Margin="0,0,0,10" />
+                        <Button Content="Usuń ucznia" 
+                                Click="DeleteStudent_Click" />
+                    </StackPanel>
+
+                    <!-- Formularz dodawania ucznia -->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="320,0,0,0">
+                        <TextBlock Text="Dodaj nowego ucznia" FontWeight="Bold" Margin="0,0,0,10" />
+
+                        <TextBlock Text="PESEL:" />
+                        <TextBox x:Name="PeselTextBox" Margin="0,0,0,10" />
+
+                        <TextBlock Text="Imię:" />
+                        <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,10" />
+
+                        <TextBlock Text="Nazwisko:" />
+                        <TextBox x:Name="LastNameTextBox" Margin="0,0,0,10" />
+
+                        <TextBlock Text="ID Klasy:" />
+                        <TextBox x:Name="ClassIdTextBox" Margin="0,0,0,20" />
+
+                        <Button Content="Dodaj ucznia" 
+                                Click="AddStudent_Click" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
